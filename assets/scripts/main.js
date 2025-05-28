@@ -69,6 +69,41 @@ async function getRecipes() {
   // A1. TODO - Check local storage to see if there are any recipes.
   //            If there are recipes, return them.
   /**************************/
+  // A1
+  const storedRecipes = localStorage.getItem('recipes');
+  if (storedRecipes) {
+    return JSON.parse(storedRecipes);
+  }
+
+  // A2
+  const recipes = [];
+
+  // A3
+  return new Promise(async (resolve, reject) => {
+    // A4
+    for (let i = 0; i < RECIPE_URLS.length; i++) {
+      try {
+        // A6
+        const response = await fetch(RECIPE_URLS[i]);
+        // A7
+        const json = await response.json();
+        // A8
+        recipes.push(json);
+        // A9
+        if (recipes.length === RECIPE_URLS.length) {
+          saveRecipesToStorage(recipes);
+          resolve(recipes);
+        }
+      } catch (error) {
+        // A10
+        console.error('Error fetching recipe:', error);
+        // A11
+        reject(error);
+      }
+    }
+  });
+}
+
   // The rest of this method will be concerned with requesting the recipes
   // from the network
   // A2. TODO - Create an empty array to hold the recipes that you will fetch
