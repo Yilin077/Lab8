@@ -35,6 +35,16 @@ self.addEventListener('fetch', function (event) {
         if (cachedResponse) {
           return cachedResponse;
         }
+        return fetch(event.request).then(function (networkResponse) {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        }).catch(function (error) {
+          console.error('Fetch failed:', error);
+          throw error;
+        });
+      });
+    })
+  )
   // We added some known URLs to the cache above, but tracking down every
   // subsequent network request URL and adding it manually would be very taxing.
   // We will be adding all of the resources not specified in the intiial cache
