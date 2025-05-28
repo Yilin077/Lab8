@@ -155,7 +155,6 @@ async function getRecipes() {
   // A10. TODO - Log any errors from catch using console.error
   // A11. TODO - Pass any errors to the Promise's reject() function
 
-
 /**
  * Takes in an array of recipes, converts it to a string, and then
  * saves that string to 'recipes' in localStorage
