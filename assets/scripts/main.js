@@ -73,7 +73,7 @@ function initializeServiceWorker() {
   }
 }
 
-}
+
 
 /**
  * Reads 'recipes' from localStorage and returns an array of
@@ -154,7 +154,7 @@ async function getRecipes() {
   //            resolve() method.
   // A10. TODO - Log any errors from catch using console.error
   // A11. TODO - Pass any errors to the Promise's reject() function
-}
+
 
 /**
  * Takes in an array of recipes, converts it to a string, and then
